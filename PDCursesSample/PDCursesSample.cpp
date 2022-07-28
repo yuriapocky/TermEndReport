@@ -1,4 +1,4 @@
-﻿// PDCursesSample.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
+// PDCursesSample.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
 //
 #define BUFFSIZE 128
 #include <stdio.h>
@@ -23,7 +23,23 @@ int main(int argc, char* argv[])
 		},
 		{//L
 			"","■","■■■"
-		}
+		},
+		{//O
+			"","■■","■■"
+		},
+		{//T
+			"","　■　","■■■"
+		},
+		{//J
+			"","　　■","■■■■"
+		},
+		{//S
+			"","　■■","■■"
+		},
+		{//Z
+			"","■■","　■■"
+		},
+
 	};
 
 	// 初期化
@@ -42,13 +58,13 @@ int main(int argc, char* argv[])
 		int v = 0;//テトリミノの種類
 		v = rand() % 2;
 
-		while (j+5<26) {
+		while (j + 5 < 26) {
 			// 画面をクリア
 			erase();
 
 			// フィールド
 			mvaddstr(1, 5, "Tetris Game");//題名
-			
+
 			for (i = 0; i < 23; i++) {
 				mvaddstr(i + 3, 50, "|");//縦軸
 			}
@@ -56,10 +72,10 @@ int main(int argc, char* argv[])
 				mvaddstr(26, i, "-");//横軸
 			}
 			//タイマ表示
-			for (i = 0;i<500; i++) {
+			for (i = 0; i < 500; i++) {
 				mvaddstr(5, 55, "i");//縦軸
 			}
-			
+
 			//テトリス生成
 			mvaddstr(j + 3, 5 + x, tetris[v].tetrimino1);
 			mvaddstr(j + 4, 5 + x, tetris[v].tetrimino2);
@@ -76,7 +92,7 @@ int main(int argc, char* argv[])
 			key = getch();
 			if (key == 'q')break;
 			switch (key) {
-			//case KEY_UP:y--; break;
+				//case KEY_UP:y--; break;
 			case KEY_DOWN:j++; break;
 			case KEY_LEFT:x--; break;
 			case KEY_RIGHT:x++; break;
@@ -84,7 +100,7 @@ int main(int argc, char* argv[])
 		}
 		//画面にテトリスを残したままにする
 		if (j + 5 == 25) {
-			x=j + 3;
+			x = j + 3;
 			mvaddstr(j + 3, 5 + x, tetris[v].tetrimino1);
 			mvaddstr(j + 4, 5 + x, tetris[v].tetrimino2);
 			mvaddstr(j + 5, 5 + x, tetris[v].tetrimino3);
